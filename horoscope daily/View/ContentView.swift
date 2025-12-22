@@ -13,9 +13,11 @@ import UserNotifications
 struct ContentView: View {
     
     @StateObject private var viewModel = HoroscopeViewModel()
-     
+    
     var body: some View {
         VStack {
+            BirthdateView()
+            
             Button ("Show Notification") {
                 UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
                     

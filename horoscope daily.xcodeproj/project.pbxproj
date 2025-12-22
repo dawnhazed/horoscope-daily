@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		E1DD7A202EF9C59B008765C7 /* ZodiacKit in Frameworks */ = {isa = PBXBuildFile; productRef = E1DD7A1F2EF9C59B008765C7 /* ZodiacKit */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		E1AD82152EF9475A004449BD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1DD7A202EF9C59B008765C7 /* ZodiacKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +117,7 @@
 			);
 			name = "horoscope daily";
 			packageProductDependencies = (
+				E1DD7A1F2EF9C59B008765C7 /* ZodiacKit */,
 			);
 			productName = "horoscope daily";
 			productReference = E1AD82052EF94759004449BD /* horoscope daily.app */;
@@ -195,6 +201,9 @@
 			);
 			mainGroup = E1AD81FC2EF94759004449BD;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				E1DD7A1E2EF9C59B008765C7 /* XCRemoteSwiftPackageReference "ZodiacKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E1AD82062EF94759004449BD /* Products */;
 			projectDirPath = "";
@@ -578,6 +587,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E1DD7A1E2EF9C59B008765C7 /* XCRemoteSwiftPackageReference "ZodiacKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/markbattistella/ZodiacKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E1DD7A1F2EF9C59B008765C7 /* ZodiacKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E1DD7A1E2EF9C59B008765C7 /* XCRemoteSwiftPackageReference "ZodiacKit" */;
+			productName = ZodiacKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E1AD81FD2EF94759004449BD /* Project object */;
 }
