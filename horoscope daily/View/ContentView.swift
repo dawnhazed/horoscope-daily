@@ -11,6 +11,9 @@ import SwiftData
 import UserNotifications
 
 struct ContentView: View {
+    
+    @StateObject private var viewModel = HoroscopeViewModel()
+     
     var body: some View {
         VStack {
             Button ("Show Notification") {
@@ -33,7 +36,13 @@ struct ContentView: View {
             }
             .padding()
             
-            Text ("daily horoscope lays here")
+            if let horoscope = viewModel.horoscope {
+                Text(String(describing: horoscope.data.horoscope_data))
+                    .padding()
+            }
+        }
+        .onAppear {
+            viewModel.fetchHoroscopeData()
         }
     }
 }
