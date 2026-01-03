@@ -39,10 +39,19 @@ struct HomeView: View {
                     .fontWeight(.semibold)
                     .foregroundStyle(.white)
                 
-                Image("cancer")
-                    .cornerRadius(20)
-                    .shadow(color: .white, radius: 20)
-                    .padding(.top, 30)
+                ZStack {
+                    if isFlipped {
+                        BackCardView(viewModel: viewModel)
+                            .rotation3DEffect(.degrees(-180), axis: (x:0, y: 1, z: 0))
+                    } else {
+                        FrontCardView()
+                    }
+                }
+                .rotation3DEffect(.degrees(isFlipped ? -180 : 0), axis: (x:0, y: 1, z: 0))
+                .animation(.easeInOut, value: isFlipped)
+                .onTapGesture {
+                    isFlipped.toggle()
+                }
                 
                 if !isFlipped {
                     Text("Flip to find out today’s horoscope")
@@ -60,6 +69,42 @@ struct HomeView: View {
             .padding(.bottom, 20)
         }
         .ignoresSafeArea()
+        .onAppear {
+            viewModel.loadHoroscope()
+        }
+    }
+}
+
+struct FrontCardView: View {
+    var body: some View {
+        Image("cancer")
+            .cornerRadius(20)
+            .shadow(color: .white, radius: 20)
+            .padding(.top, 30)
+    }
+}
+
+struct BackCardView: View {
+    
+    @ObservedObject var viewModel: ZodiacViewModel
+    
+    var body: some View {
+        ZStack {
+            Color.hdGreen
+            
+            if let horoscope = viewModel.horoscope {
+                Text(String(describing: horoscope.data.horoscope_data))
+                    .padding(27)
+                    .foregroundStyle(.hdText)
+                    .font(.body)
+                    .fontWeight(.bold)
+                    .multilineTextAlignment(.center)
+            }
+        }
+        .frame(width: 284, height: 485)
+        .cornerRadius(20)
+        .shadow(color: .white, radius: 20)
+        .padding(.top, 30)
     }
 }
 
