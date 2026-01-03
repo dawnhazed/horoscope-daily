@@ -14,12 +14,11 @@ struct MainView: View {
                 .tabItem {
                     Label("Starflow", systemImage: "moon.stars.circle.fill")
                 }
-
+            
             ProfileView()
                 .tabItem {
                     Label("Profile", systemImage: "person.circle.fill")
                 }
         }
-        .background()
     }
 }
