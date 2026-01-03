@@ -9,15 +9,19 @@ import SwiftUI
 import Foundation
 import SwiftData
 import UserNotifications
+import ZodiacKit
 
 struct ContentView: View {
     
-    @StateObject private var viewModel = HoroscopeViewModel()
+//    @StateObject private var viewModel: HoroscopeViewModel
+    @ObservedObject private var viewModel: ZodiacViewModel
+    
+    init(zodiacVM: ZodiacViewModel) {
+        self.viewModel = zodiacVM
+    }
     
     var body: some View {
         VStack {
-            BirthdateView()
-            
             Button ("Show Notification") {
                 UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
                     
@@ -38,18 +42,20 @@ struct ContentView: View {
             }
             .padding()
             
+            Text("Hey, \(viewModel.zodiacSign.name)")
+            
             if let horoscope = viewModel.horoscope {
                 Text(String(describing: horoscope.data.horoscope_data))
                     .padding()
             }
         }
         .onAppear {
-            viewModel.fetchHoroscopeData()
+            viewModel.loadHoroscope()
         }
     }
 }
 
-#Preview {
-    ContentView()
-        //.modelContainer(for: Item.self, inMemory: true)
-}
+//#Preview {
+//    ContentView()
+//        //.modelContainer(for: Item.self, inMemory: true)
+//}

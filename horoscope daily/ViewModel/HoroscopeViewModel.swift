@@ -9,21 +9,19 @@ import Combine
 import SwiftUI
 import ZodiacKit
 
-@MainActor class HoroscopeViewModel: ObservableObject {
+@MainActor
+class HoroscopeViewModel: ObservableObject {
     
     @Published var horoscope: APIResponse?
-    private let zodiacVM: ZodiacViewModel
+    let zodiacVM: ZodiacViewModel
     
     init(zodiacVM: ZodiacViewModel) {
         self.zodiacVM = zodiacVM
     }
     
-    convenience init() {
-        self.init(zodiacVM: ZodiacViewModel())
-    }
-    
     func fetchHoroscopeData(){
         let zodiac = zodiacVM.zodiacSign.name
+        print("fetched for \(zodiac)")
         
         guard let url = URL(string: "https://horoscope-app-api.vercel.app/api/v1/get-horoscope/daily?sign=\(zodiac)&day=TODAY") else {
             print("Invalid URL")
