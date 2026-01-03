@@ -22,10 +22,14 @@ struct horoscope_dailyApp: App {
 //            fatalError("Could not create ModelContainer: \(error)")
 //        }
 //    }()
-
+    var isBirthdateDone : Bool = false
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if isBirthdateDone {
+//                ContentView()
+            } else {
+                BirthdateView()
+            }
         }
 //        .modelContainer(sharedModelContainer)
     }

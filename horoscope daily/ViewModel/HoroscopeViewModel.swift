@@ -7,14 +7,23 @@
 
 import Combine
 import SwiftUI
+import ZodiacKit
 
-class HoroscopeViewModel: ObservableObject{
+@MainActor
+class HoroscopeViewModel: ObservableObject {
     
     @Published var horoscope: APIResponse?
-    let zodiac: String = ""
+    let zodiacVM: ZodiacViewModel
+    
+    init(zodiacVM: ZodiacViewModel) {
+        self.zodiacVM = zodiacVM
+    }
     
     func fetchHoroscopeData(){
-        guard let url = URL(string: "https://horoscope-app-api.vercel.app/api/v1/get-horoscope/daily?sign=Cancer&day=TODAY") else {
+        let zodiac = zodiacVM.zodiacSign.name
+        print("fetched for \(zodiac)")
+        
+        guard let url = URL(string: "https://horoscope-app-api.vercel.app/api/v1/get-horoscope/daily?sign=\(zodiac)&day=TODAY") else {
             print("Invalid URL")
             return
         }
@@ -26,9 +35,7 @@ class HoroscopeViewModel: ObservableObject{
                 
                 let horoscopeData = try decoder.decode(APIResponse.self, from: data)
                 
-                DispatchQueue.main.async {
-                    self.horoscope = horoscopeData
-                }
+                self.horoscope = horoscopeData
                 
                 print("data received")
             } catch {
