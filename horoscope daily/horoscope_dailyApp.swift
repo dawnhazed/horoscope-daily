@@ -28,7 +28,8 @@ struct horoscope_dailyApp: App {
             if isBirthdateDone {
 //                ContentView()
             } else {
-                MainView()
+//                MainView(zodiacVM: ZodiacViewModel())
+                BirthdateView()
             }
         }
 //        .modelContainer(sharedModelContainer)

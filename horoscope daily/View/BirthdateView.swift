@@ -14,29 +14,59 @@ struct BirthdateView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
-                Text ("when's your birth day?")
+            ZStack {
+                LinearGradient(stops: [
+                    Gradient.Stop(color: .hdPink, location: 0.0),
+                    Gradient.Stop(color: .hdPurple, location: 0.32),
+                    Gradient.Stop(color: .hdViolet, location: 1.0)
+                ], startPoint: .topTrailing, endPoint: .bottomLeading)
                 
-                DatePicker("Enter your birthday", selection: $zodiacVM.date, displayedComponents: .date)
-                    .datePickerStyle(GraphicalDatePickerStyle())
-                    .frame(maxHeight: 400)
-                    .padding()
-                
-                Button {
-                    isBirthdateDone = true
-                } label: {
-                    Text("Get your horoscope")
-                        .foregroundColor(.white)
+                VStack {
+                    Text ("Tell us your birthday")
+                        .font(.title)
+                        .fontWeight(.heavy)
+                        .foregroundStyle(.hdGreen)
+                    
+                    Text ("This will help us to know your birth sign \nfor your daily horoscopes")
                         .font(.callout)
-                        .padding()
-                        .background(Color.blue)
-                        .clipShape(Capsule())
-                }
-                .navigationDestination(isPresented: $isBirthdateDone) {
-                    ContentView(zodiacVM: zodiacVM)
+                        .fontWeight(.bold)
+                        .multilineTextAlignment(.center)
+                        .padding(.bottom, 32)
+                    
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 20)
+                            .frame(maxHeight: 355)
+                            .foregroundColor(.black)
+                            .padding(.horizontal, 20)
+                        
+                        DatePicker("Enter your birthday", selection: $zodiacVM.date, displayedComponents: .date)
+                            .datePickerStyle(GraphicalDatePickerStyle())
+                            .frame(maxWidth: 400)
+                            .padding(.horizontal, 40)
+                    }
+                        
+                    Button {
+                        isBirthdateDone = true
+                    } label: {
+                        Text("Discover your Starflow")
+                            .foregroundColor(.white)
+                            .font(.callout)
+                            .fontWeight(.bold)
+                            .padding()
+                    }
+                    .glassEffect(.regular.tint(.hdGreen.opacity(0.7)), in: Capsule())
+                    .padding(.top, 32)
+                    .navigationDestination(isPresented: $isBirthdateDone) {
+                        MainView(zodiacVM: zodiacVM)
+                    }
                 }
             }
+            .ignoresSafeArea()
         }
     }
+}
+
+#Preview {
+    BirthdateView()
 }
 

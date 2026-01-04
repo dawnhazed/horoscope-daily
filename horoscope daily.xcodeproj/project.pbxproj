@@ -33,22 +33,9 @@
 		E1AD821E2EF9475A004449BD /* horoscope dailyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "horoscope dailyUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		E1DD7A522F0938F6008765C7 /* Exceptions for "horoscope daily" folder in "horoscope daily" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				"horoscope-daily-Info.plist",
-			);
-			target = E1AD82042EF94759004449BD /* horoscope daily */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		E1AD82072EF94759004449BD /* horoscope daily */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				E1DD7A522F0938F6008765C7 /* Exceptions for "horoscope daily" folder in "horoscope daily" target */,
-			);
 			path = "horoscope daily";
 			sourceTree = "<group>";
 		};

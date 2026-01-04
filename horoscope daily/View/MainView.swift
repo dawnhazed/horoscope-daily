@@ -8,9 +8,16 @@
 import SwiftUI
 
 struct MainView: View {
+    
+    @ObservedObject private var viewModel: ZodiacViewModel
+    
+    init(zodiacVM: ZodiacViewModel) {
+        self.viewModel = zodiacVM
+    }
+    
     var body: some View {
         TabView {
-            HomeView(zodiacVM: ZodiacViewModel())
+            HomeView(zodiacVM: viewModel)
                 .tabItem {
                     Label("Starflow", systemImage: "moon.stars.circle.fill")
                 }
