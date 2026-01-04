@@ -35,7 +35,7 @@ struct BirthdateView: View {
                     
                     ZStack {
                         RoundedRectangle(cornerRadius: 20)
-                            .frame(maxHeight: 355)
+                            .frame(maxHeight: 330)
                             .foregroundColor(.black)
                             .padding(.horizontal, 20)
                         
@@ -43,6 +43,7 @@ struct BirthdateView: View {
                             .datePickerStyle(GraphicalDatePickerStyle())
                             .frame(maxWidth: 400)
                             .padding(.horizontal, 40)
+                            .padding(.bottom, 5)
                     }
                         
                     Button {
@@ -55,9 +56,9 @@ struct BirthdateView: View {
                             .padding()
                     }
                     .glassEffect(.regular.tint(.hdGreen.opacity(0.7)), in: Capsule())
-                    .padding(.top, 32)
+                    .padding(.top, 27)
                     .navigationDestination(isPresented: $isBirthdateDone) {
-                        MainView(zodiacVM: zodiacVM)
+                        MainView(zodiacVM: zodiacVM).navigationBarBackButtonHidden(true)
                     }
                 }
             }
