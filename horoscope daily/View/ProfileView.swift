@@ -6,8 +6,13 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ProfileView: View {
+    
+    @ObservedObject var profileVM: ProfileViewModel
+    let profile: Profile?
+    
     var body: some View {
         ZStack {
             LinearGradient(stops: [
@@ -16,7 +21,11 @@ struct ProfileView: View {
                 Gradient.Stop(color: .hdViolet, location: 1.0)
             ], startPoint: .topTrailing, endPoint: .bottomLeading)
             
-            Text("Ini profile view")
+            if let birthdate = profile?.birthdate {
+                Text("Birthdate: \(birthdate)")
+            } else {
+                Text("Birthdate: -")
+            }
         }
         .ignoresSafeArea()
     }

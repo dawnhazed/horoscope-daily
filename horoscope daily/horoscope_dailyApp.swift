@@ -10,25 +10,21 @@ import SwiftData
 
 @main
 struct horoscope_dailyApp: App {
-//    var sharedModelContainer: ModelContainer = {
-//        let schema = Schema([
-//            Horoscope.self,
-//        ])
-//        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-//
-//        do {
-//            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-//        } catch {
-//            fatalError("Could not create ModelContainer: \(error)")
-//        }
-//    }()
-    var isBirthdateDone : Bool = false
+    
+    @StateObject private var zodiacVM = ZodiacViewModel()
+    @StateObject private var profileVM: ProfileViewModel
+
+    init() {
+        let zVM = ZodiacViewModel()
+        _zodiacVM = StateObject(wrappedValue: zVM)
+        _profileVM = StateObject(wrappedValue: ProfileViewModel(zodiacVM: zVM))
+    }
+    
     var body: some Scene {
         WindowGroup {
-            if isBirthdateDone {
-//                ContentView()
+            if profileVM.isBirthdateDone {
+                MainView(zodiacVM: ZodiacViewModel(), profileVM: ProfileViewModel(zodiacVM: ZodiacViewModel()))
             } else {
-//                MainView(zodiacVM: ZodiacViewModel())
                 BirthdateView()
             }
         }

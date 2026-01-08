@@ -10,9 +10,12 @@ import SwiftUI
 struct MainView: View {
     
     @ObservedObject private var viewModel: ZodiacViewModel
+    @ObservedObject private var profileVM: ProfileViewModel
     
-    init(zodiacVM: ZodiacViewModel) {
+    
+    init(zodiacVM: ZodiacViewModel, profileVM: ProfileViewModel) {
         self.viewModel = zodiacVM
+        self.profileVM = profileVM
     }
     
     var body: some View {
@@ -22,7 +25,7 @@ struct MainView: View {
                     Label("Starflow", systemImage: "moon.stars.circle.fill")
                 }
             
-            ProfileView()
+            ProfileView(profileVM: profileVM, profile: profileVM.userData)
                 .tabItem {
                     Label("Profile", systemImage: "person.circle.fill")
                 }
