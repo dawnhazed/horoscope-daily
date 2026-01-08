@@ -10,7 +10,14 @@ import SwiftUI
 struct BirthdateView: View {
     @State var date = Date()
     @StateObject private var zodiacVM = ZodiacViewModel()
-    @State var isBirthdateDone: Bool = false
+    @StateObject private var profileVM: ProfileViewModel // pass existing
+    @State var isDone: Bool = false
+    
+    init() {
+        let zVM = ZodiacViewModel()
+        _zodiacVM = StateObject(wrappedValue: zVM) // pake _ saat kamu punya property wrapper seperti @StateObject var zodiacVM, nama aslinya di belakang layar adalah _zodiacVM
+        _profileVM = StateObject(wrappedValue: ProfileViewModel(zodiacVM: zVM))
+    }
     
     var body: some View {
         NavigationStack {
@@ -47,7 +54,8 @@ struct BirthdateView: View {
                     }
                         
                     Button {
-                        isBirthdateDone = true
+                        profileVM.saveData()
+                        isDone = true
                     } label: {
                         Text("Discover your Starflow")
                             .foregroundColor(.white)
@@ -57,8 +65,8 @@ struct BirthdateView: View {
                     }
                     .glassEffect(.regular.tint(.hdGreen.opacity(0.7)), in: Capsule())
                     .padding(.top, 27)
-                    .navigationDestination(isPresented: $isBirthdateDone) {
-                        MainView(zodiacVM: zodiacVM).navigationBarBackButtonHidden(true)
+                    .navigationDestination(isPresented: $isDone) {
+                        MainView(zodiacVM: zodiacVM, profileVM: profileVM).navigationBarBackButtonHidden(true)
                     }
                 }
             }
