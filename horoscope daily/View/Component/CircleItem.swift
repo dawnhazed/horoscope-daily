@@ -39,9 +39,6 @@ struct CircleItem: View {
                                 .font(.title)
                                 .fontWeight(.bold)
                                 .foregroundStyle(textColor)
-//                                .multilineTextAlignment(.leading)
-//                                .lineLimit(2)
-//                                .lineSpacing(-50.0)
                                 .fixedSize()
                         }
                     }

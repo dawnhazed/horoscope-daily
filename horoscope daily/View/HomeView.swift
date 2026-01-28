@@ -44,7 +44,7 @@ struct HomeView: View {
                         BackCardView(viewModel: viewModel)
                             .rotation3DEffect(.degrees(-180), axis: (x:0, y: 1, z: 0))
                     } else {
-                        FrontCardView()
+                        FrontCardView(viewModel: viewModel)
                     }
                 }
                 .rotation3DEffect(.degrees(isFlipped ? -180 : 0), axis: (x:0, y: 1, z: 0))
@@ -76,8 +76,11 @@ struct HomeView: View {
 }
 
 struct FrontCardView: View {
+    
+    @ObservedObject var viewModel: ZodiacViewModel
+    
     var body: some View {
-        Image("cancer")
+        Image(viewModel.zodiacSign.name.lowercased())
             .cornerRadius(20)
             .shadow(color: .white, radius: 20)
             .padding(.top, 30)

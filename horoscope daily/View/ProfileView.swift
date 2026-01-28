@@ -30,6 +30,10 @@ struct ProfileView: View {
                     Gradient.Stop(color: .hdViolet, location: 1.0)
                 ], startPoint: .topTrailing, endPoint: .bottomLeading)
                 
+                Image("profile")
+                    .resizable()
+                    .frame(width: 100, height: 100)
+                
                 ForEach(0..<5) { i in
                     
                     let widthheight: CGFloat = 100 + ((CGFloat(i) + 1) * 100)
@@ -60,18 +64,10 @@ struct ProfileView: View {
                 
                 if let birthdate = profile?.birthdate {
                     
-                    var birthdateDay: String {
-                        if birthdate.day < 10 {
-                            return "0\(birthdate.day)"
-                        } else {
-                            return "\(birthdate.day)"
-                        }
-                    }
-                    
                     CircleItem(
                         circleColor: .hdGreen,
                         textColor: .black,
-                        text: "\(birthdateDay)/\(birthdate.month)",
+                        text: "\(birthdate.day)/\(birthdate.month)",
                         radius: 200,
                         angle: 310,
                         diameter: 81
